@@ -57,25 +57,25 @@ CARS = [
     {
         'id': 1,
         'title': 'Luxury Sedan',
-        'image': 'https://cdn.pixabay.com/photo/2017/01/06/19/15/auto-1957037_1280.jpg',
+        'image': 'https://images.unsplash.com/photo-1642130204821-74126d1cb88e?q=80&w=1760&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         'description': 'A premium sedan with luxury interior, smooth performance, and excellent mileage.',
     },
     {
         'id': 2,
         'title': 'Electric Future',
-        'image': 'https://cdn.pixabay.com/photo/2020/06/12/15/48/car-5288361_1280.jpg',
+        'image': "https://media.istockphoto.com/id/1477067152/photo/electric-car-power-charging.webp?a=1&b=1&s=612x612&w=0&k=20&c=Qb6NoEivbPGyf-YnRAEa6tfsZDWDwx6MSu0UCym3e9c=" ,
         'description': 'A cutting-edge electric car with zero emissions and futuristic design.',
     },
     {
         'id': 3,
         'title': 'Sports Beast',
-        'image': 'https://cdn.pixabay.com/photo/2016/03/27/21/16/audi-1283853_1280.jpg',
+        'image': 'https://images.unsplash.com/photo-1516298252535-cf2ac5147f9b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8c3BvcnRzJTIwY2FyfGVufDB8fDB8fHww',
         'description': 'High-performance sports car built for speed and handling.',
     },
     {
         'id': 4,
         'title': 'Classic Muscle',
-        'image': 'https://cdn.pixabay.com/photo/2013/07/12/15/55/mustang-150318_1280.png',
+        'image': 'https://images.unsplash.com/photo-1489008777659-ad1fc8e07097?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         'description': 'An iconic American muscle car with a roaring engine and vintage style.',
     },
 ]
