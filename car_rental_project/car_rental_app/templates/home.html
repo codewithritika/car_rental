@@ -80,5 +80,23 @@
             <a href="{% url 'car_detail' 4 %}" style="display:block; padding: 10px; background: #007bff; color: white; text-align: center; text-decoration: none; border-radius: 0 0 10px 10px;">View Details</a> 
         </div>
     </div>
+    <form method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="car_id" value="{{ car.id }}">
+    <label>Rent Date:</label>
+    <input type="date" name="rent_date" required>
+    <label>Return Date:</label>
+    <input type="date" name="return_date" required>
+    <button type="submit">Book Now</button>
+</form>
+{% if messages %}
+    <div class="success">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+{% endif %}
 </body>
 </html>
+
+
