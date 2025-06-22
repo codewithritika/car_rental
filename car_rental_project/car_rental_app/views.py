@@ -3,8 +3,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.core.mail import send_mail 
+from django.contrib.auth.decorators import login_required
 
-from car_rental_app.models import Car
+from car_rental_app.models import Booking, Car
 
 def login_view(request):
     if request.method == 'POST':
@@ -41,13 +42,29 @@ def register_view(request):
 
     return render(request, 'register.html')
 
-from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='login')
 def home_view(request):
     cars = Car.objects.all()
-    return render(request, 'home.html', {'cars': CARS})
 
+    if request.method == 'POST':
+        car_id = request.POST.get('car_id')
+        rent_date = request.POST.get('rent_date')
+        return_date = request.POST.get('return_date')
+
+        if car_id and rent_date and return_date:
+            car = Car.objects.get(id=car_id)
+            Booking.objects.create(
+                user=request.user,
+                car=car,
+                rent_date=rent_date,
+                return_date=return_date
+            )
+            messages.success(request, f'You booked {car.title} from {rent_date} to {return_date}')
+
+        return redirect('home')
+
+    return render(request, 'home.html', {'cars': cars})
 def car_detail_view(request, car_id):
     car = next((c for c in CARS if c['id'] == car_id), None)
     if not car:
@@ -58,8 +75,7 @@ CARS = [
         'id': 1,
         'title': 'Luxury Sedan',
         'image': 'https://images.unsplash.com/photo-1642130204821-74126d1cb88e?q=80&w=1760&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        'description': 'A premium sedan with luxury interior, smooth performance, and excellent mileage.',
-    },
+        'description': 'A premium sedan with luxury interior, smooth performance, and excellent mileage. KEY FEATURES:Body Style: 4 doors, fixed roof, and a separate boot (trunk).     Seating: Typically 5 passengers.   Ride Comfort: Smooth and stable ride, designed for comfort and long-distance travel. Handling: Offers better handling than larger vehicles.  Fuel Efficiency: Generally better than SUVs due to aerodynamic design.',},
     {
         'id': 2,
         'title': 'Electric Future',
@@ -102,3 +118,9 @@ def contact_view(request):
         # )
 
     return render(request, 'contact.html', {'success': success})
+
+# from .models import Booking
+
+def admin_view(request):
+    bookings = Booking.objects.select_related('user', 'car').all()
+    return render(request, 'admin.html', {'bookings': bookings})
